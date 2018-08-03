@@ -29,12 +29,33 @@ Install Devstack
 
 To install Devstack, follow these steps.
 
+#. Decide which branch you will be working with.  "master" is the latest code
+   in the repositories, changed daily.  Open edX releases are more stable,
+   for example, Hawthorn.
+
 #. Check out a local copy of the ``edx/devstack`` repository from
-   ``https://github.com/edx/devstack``, selecting the branch that you want to
-   work with.
+   ``https://github.com/edx/devstack``.
+   
+    .. code-block:: bash
 
-#. Navigate to the ``devstack`` directory
+     git clone https://github.com/edx/devstack
+     cd devstack
 
+#. If you are not using the master branch, check out the branch you want.
+
+    .. code-block:: bash
+
+     git checkout open-release/hawthorn.master
+
+#. If you are not using the master branch, define an environment variable for
+   the Open edX version you are using, such as ``hawthorn.master`` or
+   ``zebrawood.rc1``. Note that unlike a server install, the value of the
+   ``OPENEDX_RELEASE`` variable should not use the ``open-release/`` prefix.
+
+    .. code-block:: bash
+
+     export OPENEDX_RELEASE=hawthorn.master
+   
 #. Create a Python virtual environment. For information about how to do this,
    see `Virtual Environments`_.
 
@@ -103,24 +124,6 @@ following sequence of commands.
 
 This stops any running Devstack containers, pulls the latest images, and then 
 starts all of the Devstack containers.
-
-======================================
-Running Images for an Open edX Release
-======================================
-
-To run an image of an Open edX release other than the latest, follow these 
-steps.
-
-#. Set the ``OPENEDX_RELEASE`` environment variable to the appropriate tag 
-   for the image tag that you want to run, such as ``hawthorn.master``
-   or ``zebrawood.rc1``. Note that unlike a server install, the value of the 
-   ``OPENEDX_RELEASE`` variable should not use the ``open-release/`` prefix.
-
-#. Run ``make dev.checkout`` to check out the correct branch in the local 
-   checkout of each service repository.
-
-#. Run ``make pull`` to get the correct images that correspond to the 
-   ``OPENEDX_RELEASE`` variable that you set.
 
 
 .. include:: ../../../links/links.rst
